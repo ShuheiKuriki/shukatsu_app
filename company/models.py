@@ -6,10 +6,10 @@ class Company(models.Model):
     posi_lis = ["Webエンジニア","データサイエンティスト","研究開発","ITコンサルタント","営業","企画","マーケティング"]
     positions = [(i,i) for i in posi_lis]
 
-    status_lis = ["エントリー前","一次面接前","二次面接前","三次面接前","最終面接前","内定","お祈り"]
+    status_lis = ["オンライン面談前","エントリー前","一次面接前","二次面接前","三次面接前","最終面接前","内定","お祈り"]
     statuses=[(i,i) for i in status_lis]
 
-    next_lis = ['エントリー','エントリーシート','Webテスト','コーディングテスト','面接日程調整']
+    next_lis = ['エントリー','エントリーシート','Webテスト','コーディングテスト','面接日程調整','内定承諾']
     nexts = [(i,i) for i in next_lis]
 
     desire_lis = ['A','B','C','D','E']
