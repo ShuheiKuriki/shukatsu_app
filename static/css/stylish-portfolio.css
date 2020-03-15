@@ -105,6 +105,12 @@ h6 {
   padding: 0;
 }
 
+.masthead h2 {
+  font-size: 3rem;
+  margin: 0;
+  padding: 0;
+}
+
 @media (min-width: 992px) {
   .masthead {
     height: 100vh;
