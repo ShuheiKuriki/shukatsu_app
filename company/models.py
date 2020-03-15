@@ -28,6 +28,7 @@ class Company(models.Model):
 
 class CompanyInfo(models.Model):
     company = models.OneToOneField(Company, verbose_name='企業名', null=True, on_delete=models.CASCADE)
+    official = models.CharField('正式名称',max_length=128, blank=True, null=True)
     total = models.IntegerField('従業員数', blank=True, null=True)
     memo = models.TextField('メモ', default='', blank=True)
     user = models.ForeignKey(User, on_delete=models.CASCADE)
