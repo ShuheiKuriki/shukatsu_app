@@ -1,25 +1,43 @@
 {% extends "base/user_base.html" %}
 {% block title %}企業リスト{% endblock %}
 {% block active_company %}active{% endblock %}
-{% block content %}{% endblock %}
+{% block content %}
+<h3>{{date}}現在</h3>
+<form class='mt-4' method="POST" action="{% url 'company:sort' %}">
+  {% csrf_token %}
+  <button class="btn-sm btn-primary" type="submit">並び替え</button>
+  {% for field in form %}
+    <span class='ml-3'>{{ field.label_tag }} {{ field }}</span>
+  {% endfor %}
+</form>
+{% endblock %}
 {% block content2 %}
         <table class='table border col-12'>
           <thead>
             <tr>
               <th scope='col'></th>
-              <th scope='col'>会社名 : <span class='text-danger'></span></th>
+              <th scope='col'>企業名<span class='text-danger'></span></th>
+              <th scope='col'>情報</th>
+              <th scope='col'>ポジション</th>
+              <th scope='col'>志望度</th>
               <th scope='col'>ステータス</th>
+              <th scope='col'>次のステップ</th>
+              <th scope='col'>期限</th>
               <th scope='col'>編集</th>
               <th scope='col'>削除</th>
             </tr>
           </thead>
-          <tbody class='sortable'>
+          <tbody>
             {% for company in company_list %}
               <tr>
                 <th name="num_data" scope='row'>{{ forloop.counter }}</th>
                 <td>{{ company.name }}</td>
+                <td><a href="{% url 'company:info' company.id %}">info</a></td>
+                <td>{{ company.position }}</td>
+                <td>{{ company.desire }}</td>
                 <td>{{ company.status }}</td>
-                <!-- {% block change_button %}{% endblock %} -->
+                <td>{{ company.next }}</td>
+                <td>{{ company.deadline.month }}/{{ company.deadline.day }}</td>
                 <td><a href="{% url 'company:update' company.id %}?next={{ request.get_full_path }}">edit</a></td>
                 <td><a href="{% url 'company:delete' company.id %}?next={{ request.get_full_path }}">del</a></td>
               </tr>

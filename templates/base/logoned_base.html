@@ -3,7 +3,7 @@
 {% block li %}
     {% if user.is_authenticated %}
     <li class="sidebar-nav-item">
-      <a class="js-scroll-trigger" href="{% url 'company:list' %}">企業リスト</a>
+      <a class="js-scroll-trigger" href="{% url 'company:index' %}">企業リスト</a>
     </li>
     <li class="sidebar-nav-item">
       <a class="js-scroll-trigger" href="{% url 'myself:index' %}">自己分析</a>

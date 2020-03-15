@@ -1,0 +1,23 @@
+{% extends 'base/user_base.html' %}
+{% block title %}{{ companyinfo.name }}{% endblock %}
+{% block content %}{% endblock %}
+{% block content2 %}
+  <div class="container">
+    <div class="row">
+      <div class="col-12">
+        <div class="card card-default">
+          {% for key,value in info.items %}
+          <div class="card-body">
+            {{key}} : {{ value|linebreaksbr }}
+          </div>
+          {% endfor %}
+          <div class="card-footer">
+            <a class="btn btn-success" href="{% url 'company:index' %}">企業一覧</a>
+            <a class="btn btn-primary" href="{% url 'company:updateinfo' companyinfo.id %}?next={{ request.get_full_path }}">修正</a>
+            <a class="btn btn-danger" href="{% url 'company:deleteinfo' companyinfo.id %}?next={{ request.get_full_path }}">削除</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+{% endblock %}
