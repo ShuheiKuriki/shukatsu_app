@@ -34,7 +34,7 @@ class CompanyCreateView(CreateView):
         try:
             return original_url(self)
         except:
-            return reverse_lazy('accounts:index', kwargs={'pk': self.request.user.id})
+            return reverse_lazy('company:list', kwargs={'pk': self.request.user.id})
 
 @method_decorator(login_required, name='dispatch')
 class CompanyUpdateView(UpdateView):
@@ -46,7 +46,7 @@ class CompanyUpdateView(UpdateView):
         try:
             return original_url(self)
         except:
-            return reverse_lazy('accounts:index', kwargs={'pk': self.request.user.id})
+            return reverse_lazy('company:list', kwargs={'pk': self.request.user.id})
 
 @method_decorator(login_required, name='dispatch')
 class CompanyDeleteView(DeleteView):
@@ -57,7 +57,7 @@ class CompanyDeleteView(DeleteView):
         try:
             return original_url(self)
         except:
-            return reverse_lazy('accounts:index', kwargs={'pk': self.request.user.id})
+            return reverse_lazy('company:list', kwargs={'pk': self.request.user.id})
 
 
 

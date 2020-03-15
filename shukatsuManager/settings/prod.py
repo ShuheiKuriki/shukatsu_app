@@ -1,6 +1,6 @@
 from .common import *
 
-DEBUG = True
+DEBUG = False
 
 ALLOWED_HOSTS = ['127.0.0.1', '.herokuapp.com']
 
@@ -50,6 +50,9 @@ DATABASES = {
 }
 
 SECRET_KEY = os.environ['SECRET_KEY']
+SENDGRID_API_KEY = os.environ['SENDGRID_API_KEY']
+EMAIL_HOST_PASSWORD = SENDGRID_API_KEY
+SENDGRID_SANDBOX_MODE_IN_DEBUG = False
 
 import django_heroku
 
