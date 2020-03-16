@@ -3,7 +3,7 @@ from django.contrib.auth.models import User
 from django.utils.timezone import now
 
 class Company(models.Model):
-    posi_lis = ["Webエンジニア","データサイエンティスト","研究開発","ITコンサルタント","営業","企画","マーケティング"]
+    posi_lis = ["Webエンジニア","データサイエンティスト","研究開発","ITコンサルタント","システムエンジニア","営業","企画","マーケティング"]
     positions = [(i,i) for i in posi_lis]
 
     status_lis = ["オンライン面談前","エントリー前","一次面接前","二次面接前","三次面接前","最終面接前","内定","お祈り"]
@@ -30,6 +30,7 @@ class CompanyInfo(models.Model):
     company = models.OneToOneField(Company, verbose_name='企業名', null=True, on_delete=models.CASCADE)
     official = models.CharField('正式名称',max_length=128, blank=True, null=True)
     total = models.IntegerField('従業員数', blank=True, null=True)
+    total = models.CharField('給与', max_length=128, blank=True, null=True)
     memo = models.TextField('メモ', default='', blank=True)
     user = models.ForeignKey(User, on_delete=models.CASCADE)
 
@@ -37,7 +38,7 @@ class CompanyInfo(models.Model):
         return self.company
 
     def get_list(self):
-        return {'企業名':self.company, '従業員数': self.total, 'メモ': self.memo}
+        return {'企業名':self.company, '正式名称':self.official,'従業員数': self.total, '給与':self.total, 'メモ': self.memo}
 
 
 # Create your models here.
