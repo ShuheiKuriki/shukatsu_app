@@ -38,7 +38,7 @@ class CompanyInfo(models.Model):
         return self.company
 
     def get_list(self):
-        return {'企業名':self.company, '正式名称':self.official,'従業員数': self.total, '給与':self.total, 'メモ': self.memo}
+        return {'企業名':self.company, '正式名称':self.official,'従業員数': self.member, '給与':self.salary, 'メモ': self.memo}
 
 
 # Create your models here.
