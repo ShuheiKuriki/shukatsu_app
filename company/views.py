@@ -26,7 +26,7 @@ class CompanyListView(ListView):
     def get_queryset(self):
         keys = self.kwargs['sort'].split('-')
         companies = Company.objects.filter(user=self.request.user)
-        for key in keys:
+        for key in keys[::-1]:
             companies = companies.order_by(key)
         return companies
 
