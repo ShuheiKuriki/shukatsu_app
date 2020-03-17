@@ -9,7 +9,8 @@ class Company(models.Model):
     status_lis = ["オンライン面談前","エントリー前","一次面接前","二次面接前","三次面接前","最終面接前","内定","お祈り"]
     statuses=[(i,i) for i in status_lis]
 
-    next_lis = ['エントリー','エントリーシート','Webテスト','コーディングテスト','面接日程調整','内定承諾']
+    next_lis = ['エントリー','エントリーシート','Webテスト','コーディングテスト',
+                '一次面接','二次面接','三次面接','最終面接','面接日程調整','内定承諾']
     nexts = [(i,i) for i in next_lis]
 
     desire_lis = ['A','B','C','D','E']
