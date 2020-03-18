@@ -129,12 +129,15 @@ AUTHENTICATION_BACKENDS = (
 #認証⽅式を 「メールアドレスとパスワード」 に変更
 ACCOUNT_AUTHENTICATION_METHOD = 'email'
 
-EMAIL_BACKEND = 'sendgrid_backend.SendgridBackend'
+ACCOUNT_EMAIL_VERIFICATION = 'none'
+ACCOUNT_USERNAME_REQUIRED = True 
 
-EMAIL_HOST = 'smtp.sendgrid.net'
-EMAIL_HOST_USER = 'apikey'
-EMAIL_PORT = 587
-EMAIL_USE_TLS = True
+# EMAIL_BACKEND = 'sendgrid_backend.SendgridBackend'
+
+# EMAIL_HOST = 'smtp.sendgrid.net'
+# EMAIL_HOST_USER = 'apikey'
+# EMAIL_PORT = 587
+# EMAIL_USE_TLS = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/3.0/howto/static-files/
 
