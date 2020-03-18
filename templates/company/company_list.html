@@ -17,14 +17,12 @@
             <tr>
               <th scope='col'></th>
               <th scope='col'>企業名<span class='text-danger'></span></th>
-              <th scope='col'>情報</th>
               <th scope='col'>ポジション</th>
               <th scope='col'>志望度</th>
               <th scope='col'>ステータス</th>
               <th scope='col'>次のステップ</th>
               <th scope='col'>期限</th>
-              <th scope='col'>編集</th>
-              <th scope='col'>削除</th>
+              <th scope='col'>メニュー</th>
             </tr>
           </thead>
           <tbody>
@@ -32,14 +30,21 @@
               <tr>
                 <th name="num_data" scope='row'>{{ forloop.counter }}</th>
                 <td>{{ company.name }}</td>
-                <td><a href="{% url 'company:info' company.id %}">info</a></td>
                 <td>{{ company.position }}</td>
                 <td>{{ company.desire }}</td>
                 <td>{{ company.status }}</td>
                 <td>{{ company.next }}</td>
                 <td>{{ company.deadline.month }}/{{ company.deadline.day }}</td>
-                <td><a href="{% url 'company:update' company.id %}?next={{ request.get_full_path }}">edit</a></td>
-                <td><a href="{% url 'company:delete' company.id %}?next={{ request.get_full_path }}">del</a></td>
+                <td>
+                  <div class="dropdown">
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown"><span class="caret"></span></a>
+                    <ul class="dropdown-menu" role="menu">
+                      <li><a href="{% url 'company:info' company.id %}">企業情報</a></li>
+                      <li><a href="{% url 'company:update' company.id %}?next={{ request.get_full_path }}">編集</a></li>
+                      <li><a href="{% url 'company:delete' company.id %}?next={{ request.get_full_path }}">削除</a></li>
+                    </ul>
+                  </div>
+                </td>
               </tr>
             {% endfor %}
           </tbody>
