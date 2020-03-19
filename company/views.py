@@ -17,17 +17,16 @@ from datetime import date
 # Create your views here.
 
 def index(request):
-    return redirect('company:list', sort='deadline-desire')
+    return redirect('company:list', sort='deadline')
 
 @method_decorator(login_required, name='dispatch')
 class CompanyListView(ListView):
     model = Company
 
     def get_queryset(self):
-        keys = self.kwargs['sort'].split('-')
+        key = self.kwargs['sort']
         companies = Company.objects.filter(user=self.request.user)
-        for key in keys[::-1]:
-            companies = companies.order_by(key)
+        companies = companies.order_by(key)
         return companies
 
     def get_context_data(self, **kwargs):
@@ -38,13 +37,10 @@ class CompanyListView(ListView):
 
 def sort(request):
     if request.method == "POST":
-        s = request.POST.get('key1')
-        for i in range(2,5):
-            if request.POST.get('key'+str(i)) != '':
-                s += '-'+request.POST.get('key'+str(i))
+        s = request.POST.get('key')
         return redirect('company:list', sort=s)
     else:
-        return redirect('company:list', sort='deadline-desire')
+        return redirect('company:list', sort='deadline')
 
 @method_decorator(login_required, name='dispatch')
 class CompanyCreateView(CreateView):

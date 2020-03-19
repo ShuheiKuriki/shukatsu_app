@@ -27,6 +27,4 @@ class CompanyInfoForm(ModelForm):
 
 class SortForm(forms.Form):
     keys = [('','-------'),('deadline','期限'),("position",'ポジション'),("desire",'志望度'),("status",'ステータス')]
-    key1 = forms.ChoiceField(choices=keys[1:],required=True)
-    for i in range(2,5):
-        exec('key'+str(i)+'=forms.ChoiceField(choices=keys,required=False)')
+    key = forms.ChoiceField(choices=keys[1:],required=True)
