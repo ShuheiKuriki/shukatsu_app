@@ -13,31 +13,45 @@
 {% endblock %}
 {% block content2 %}
     <!-- xs -->
-        <table class='table table-sm table-striped table-bordered table-responsive d-block d-xl-none'>
-          <thead>
-            <tr>
-              <th scope='col'></th>
-              <th scope='col'>企業名<span class='text-danger'></span></th>
-              <th scope='col'>ポジション</th>
-              <th scope='col'>志望度</th>
-              <th scope='col'>ステータス</th>
-              <th scope='col'>次のステップ</th>
-              <th scope='col'>期限</th>
-              <th scope='col'>メニュー</th>
-            </tr>
-          </thead>
+        <table class='table table-sm table-striped table-bordered table-responsive d-block d-md-none'>
+          <thead></thead>
           <tbody>
             {% for company in company_list %}
               <tr>
-                <th name="num_data" scope='row'>{{ forloop.counter }}</th>
-                <td>{{ company.name }}</td>
+                <th scope='row'>{{ forloop.counter }}</th>
+                <td class="w-50" scope='col'>企業名<span class='text-danger'></span></td>
+                <td class="w-50" scope='col'>{{ company.name }}</td>
+              </tr>
+              <tr>
+                <th scope='row'></th>
+                <td scope='col'>ポジション</td>
                 <td>{{ company.position }}</td>
-                <td>{{ company.desire }}</td>
-                <td>{{ company.status }}</td>
-                <td>{{ company.next }}</td>
-                <td>{{ company.deadline.month }}/{{ company.deadline.day }}</td>
-                <td>
-                  <div class="d-block d-xl-none dropleft">
+              </tr>
+              <tr>
+                <th scope='row'></th>
+                <td scope='col'>志望度</td>
+                <td scope='col'>{{ company.desire }}</td>
+              </tr>
+              <tr>
+                <th scope='row'></th>
+                <td scope='col'>ステータス</td>
+                <td scope='col'>{{ company.status }}</td>
+              </tr>
+              <tr>
+                <th scope='row'></th>
+                <td scope='col'>次のステップ</td>
+                <td scope='col'>{{ company.next }}</td>
+              </tr>
+              <tr>
+                <th scope='row'></th>
+                <td scope='col'>期限</td>
+                <td scope='col'>{{ company.deadline.month }}/{{ company.deadline.day }}</td>
+              </tr>
+              <tr>
+                <th scope='row'></th>
+                <td scope='col'>メニュー</td>
+                <td scope='col'>
+                  <div class="d-block d-md-none dropdown">
                     <button type="button" class="btn-xs btn-secondary dropdown-toggle" data-toggle="dropdown"><span class="caret"></span>menu</button>
                     <ul class="dropdown-menu" role="menu">
                       <li><a class='btn btn-warning btn-block' href="{% url 'company:info' company.id %}">企業情報</a></li>
@@ -50,12 +64,12 @@
             {% endfor %}
           </tbody>
         </table>
-    <!-- xl -->
-        <table class='table table-striped table-bordered d-none d-xl-block'>
+    <!-- md -->
+        <table class='table table-striped table-bordered d-none d-md-block'>
           <thead>
             <tr>
               <th scope='col'></th>
-              <th class="w-25" scope='col'>企業名<span class='text-danger'></span></th>
+              <th scope='col'>企業名<span class='text-danger'></span></th>
               <th class="w-25" scope='col'>ポジション</th>
               <th scope='col'>志望度</th>
               <th scope='col'>ステータス</th>
@@ -67,7 +81,7 @@
           <tbody>
             {% for company in company_list %}
               <tr>
-                <th name="num_data" scope='row'>{{ forloop.counter }}</th>
+                <th scope='row'>{{ forloop.counter }}</th>
                 <td>{{ company.name }}</td>
                 <td>{{ company.position }}</td>
                 <td>{{ company.desire }}</td>
@@ -75,7 +89,7 @@
                 <td>{{ company.next }}</td>
                 <td>{{ company.deadline.month }}/{{ company.deadline.day }}</td>
                 <td>
-                  <div class="d-none d-xl-block dropdown">
+                  <div class="d-none d-md-block dropdown">
                     <button type="button" class="btn-xs btn-secondary dropdown-toggle" data-toggle="dropdown"><span class="caret"></span>menu</button>
                     <ul class="dropdown-menu" role="menu">
                       <li><a class='btn btn-warning btn-block' href="{% url 'company:info' company.id %}">企業情報</a></li>
