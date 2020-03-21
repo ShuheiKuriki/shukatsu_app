@@ -9,8 +9,8 @@ class Company(models.Model):
     status_lis = ["オンライン面談前","エントリー前","一次面接前","二次面接前","三次面接前","最終面接前","内定","お祈り"]
     statuses=[(i,i) for i in status_lis]
 
-    next_lis = ['エントリー','エントリーシート','Webテスト','コーディングテスト',
-                '一次面接','二次面接','三次面接','最終面接','面接日程調整','内定承諾']
+    next_lis = ['エントリー','エントリーシート','Webテスト','コーディングテスト','面談',
+                '一次面接','二次面接','三次面接','最終面接','日程調整','内定承諾']
     nexts = [(i,i) for i in next_lis]
 
     desire_lis = ['A','B','C','D','E']
@@ -32,14 +32,13 @@ class CompanyInfo(models.Model):
     official = models.CharField('正式名称',max_length=128, blank=True, null=True)
     member = models.IntegerField('従業員数', blank=True, null=True)
     salary = models.CharField('給与', max_length=128, blank=True, null=True)
+    industry = models.CharField('業界', max_length=128, blank=True, null=True)
+    vision = models.TextField('ビジョン', blank=True, null=True)
+    reason = models.TextField('志望理由', blank=True, null=True)
     memo = models.TextField('メモ', default='', blank=True)
     user = models.ForeignKey(User, on_delete=models.CASCADE)
 
     def __str__(self):
         return self.company
-
-    def get_list(self):
-        return {'企業名':self.company, '正式名称':self.official,'従業員数': self.member, '給与':self.salary, 'メモ': self.memo}
-
 
 # Create your models here.

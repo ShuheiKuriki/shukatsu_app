@@ -12,6 +12,44 @@
 </form>
 {% endblock %}
 {% block content2 %}
+<!-- md -->
+    <table class='table table-striped table-bordered d-none d-md-block'>
+      <thead>
+        <tr class='table-info'>
+          <th scope='col'></th>
+          <th scope='col'>企業名<span class='text-danger'></span></th>
+          <th class="w-25" scope='col'>ポジション</th>
+          <th scope='col'>志望度</th>
+          <th scope='col'>ステータス</th>
+          <th scope='col'>次のステップ</th>
+          <th scope='col'>期限</th>
+          <th scope='col'>メニュー</th>
+        </tr>
+      </thead>
+      <tbody>
+        {% for company in company_list %}
+          <tr>
+            <th scope='row'>{{ forloop.counter }}</th>
+            <td>{{ company.name }}</td>
+            <td>{{ company.position }}</td>
+            <td>{{ company.desire }}</td>
+            <td>{{ company.status }}</td>
+            <td>{{ company.next }}</td>
+            <td>{{ company.deadline.month }}/{{ company.deadline.day }}</td>
+            <td>
+              <div class="d-none d-md-block dropdown">
+                <button type="button" class="btn-xs btn-info dropdown-toggle" data-toggle="dropdown"><span class="caret"></span>menu</button>
+                <ul class="dropdown-menu" role="menu">
+                  <li><a class='btn btn-primary btn-block' href="{% url 'company:info' company.id %}">企業情報</a></li>
+                  <li><a class='btn btn-primary btn-block my-1' href="{% url 'company:update' company.id %}?next={{ request.get_full_path }}">編集</a></li>
+                  <li><a class='btn btn-primary btn-block' href="{% url 'company:delete' company.id %}?next={{ request.get_full_path }}">削除</a></li>
+                </ul>
+              </div>
+            </td>
+          </tr>
+        {% endfor %}
+      </tbody>
+    </table>
     <!-- xs -->
       {% for company in company_list %}
         <table class='table table-sm table-striped table-bordered table-responsive d-block d-md-none'>
@@ -52,11 +90,11 @@
                 <td scope='col'>メニュー</td>
                 <td scope='col'>
                   <div class="d-block d-md-none dropdown">
-                    <button type="button" class="btn-xs btn-secondary dropdown-toggle" data-toggle="dropdown"><span class="caret"></span>menu</button>
+                    <button type="button" class="btn-xs btn-info dropdown-toggle" data-toggle="dropdown"><span class="caret"></span>menu</button>
                     <ul class="dropdown-menu" role="menu">
-                      <li><a class='btn btn-warning btn-block' href="{% url 'company:info' company.id %}">企業情報</a></li>
-                      <li><a class='btn btn-info btn-block my-1' href="{% url 'company:update' company.id %}?next={{ request.get_full_path }}">編集</a></li>
-                      <li><a class='btn btn-danger btn-block' href="{% url 'company:delete' company.id %}?next={{ request.get_full_path }}">削除</a></li>
+                      <li><a class='btn btn-primary btn-block' href="{% url 'company:info' company.id %}">企業情報</a></li>
+                      <li><a class='btn btn-primary btn-block my-1' href="{% url 'company:update' company.id %}?next={{ request.get_full_path }}">編集</a></li>
+                      <li><a class='btn btn-primary btn-block' href="{% url 'company:delete' company.id %}?next={{ request.get_full_path }}">削除</a></li>
                     </ul>
                   </div>
                 </td>
@@ -64,42 +102,4 @@
           </tbody>
         </table>
       {% endfor %}
-    <!-- md -->
-        <table class='table table-striped table-bordered d-none d-md-block'>
-          <thead>
-            <tr>
-              <th scope='col'></th>
-              <th scope='col'>企業名<span class='text-danger'></span></th>
-              <th class="w-25" scope='col'>ポジション</th>
-              <th scope='col'>志望度</th>
-              <th scope='col'>ステータス</th>
-              <th scope='col'>次のステップ</th>
-              <th scope='col'>期限</th>
-              <th scope='col'>メニュー</th>
-            </tr>
-          </thead>
-          <tbody>
-            {% for company in company_list %}
-              <tr>
-                <th scope='row'>{{ forloop.counter }}</th>
-                <td>{{ company.name }}</td>
-                <td>{{ company.position }}</td>
-                <td>{{ company.desire }}</td>
-                <td>{{ company.status }}</td>
-                <td>{{ company.next }}</td>
-                <td>{{ company.deadline.month }}/{{ company.deadline.day }}</td>
-                <td>
-                  <div class="d-none d-md-block dropdown">
-                    <button type="button" class="btn-xs btn-secondary dropdown-toggle" data-toggle="dropdown"><span class="caret"></span>menu</button>
-                    <ul class="dropdown-menu" role="menu">
-                      <li><a class='btn btn-warning btn-block' href="{% url 'company:info' company.id %}">企業情報</a></li>
-                      <li><a class='btn btn-info btn-block my-1' href="{% url 'company:update' company.id %}?next={{ request.get_full_path }}">編集</a></li>
-                      <li><a class='btn btn-danger btn-block' href="{% url 'company:delete' company.id %}?next={{ request.get_full_path }}">削除</a></li>
-                    </ul>
-                  </div>
-                </td>
-              </tr>
-            {% endfor %}
-          </tbody>
-        </table>
 {% endblock %}

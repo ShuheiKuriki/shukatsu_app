@@ -82,7 +82,12 @@ class CompanyInfoDetailView(DetailView):
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
-        context['info'] = context['object'].get_list()
+        meta_fields = CompanyInfo._meta.get_fields()
+        dic = {}
+        for field in meta_fields:
+            if field.name != 'id' and field.name != 'user':
+                exec('dic[field.verbose_name]=context["object"].{}'.format(field.name))
+        context['info'] = dic
         return context
 
 
