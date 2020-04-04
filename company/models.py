@@ -12,7 +12,7 @@ class Company(models.Model):
     statuses=[(i,i) for i in status_lis]
 
     next_lis = ['説明会','エントリー','レポート','スライド','エントリーシート','Webテスト','コーディングテスト','面談',
-                '一次面接','二次面接','三次面接','最終面接','日程調整','内定辞退','内定承諾']
+                '一次面接','二次面接','三次面接','最終面接','日程調整','辞退','内定承諾']
     nexts = [(i,i) for i in next_lis]
 
     desire_lis = ['A','B','C','D','E']
