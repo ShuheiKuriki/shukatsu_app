@@ -14,7 +14,7 @@
 {% endblock %}
 {% block content2 %}
 <!-- md -->
-    <table class='table table-striped table-bordered d-none d-md-block'>
+    <table class='table table-striped table-bordered d-none d-md-block text-center'>
       <thead>
         <tr class='table-info'>
           <th scope='col'></th>
@@ -32,7 +32,7 @@
           <tr>
             <th scope='row'>{{ forloop.counter }}</th>
             <td>{{ company.name }}</td>
-            <td>{{ company.position }}</td>
+            <td>{% if company.position is not None %}{{ company.position }}{% endif %}</td>
             <td>{% if company.desire is not None %}{{ company.desire }}{% endif %}　　</td>
             <td>{% if company.status is not None %}{{ company.status }}{% endif %}</td>
             <td>{% if company.next is not None %}{{ company.next }}{% endif %}</td>

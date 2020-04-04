@@ -11,8 +11,8 @@ class Company(models.Model):
             "三次面接前","最終面接前",'結果待ち',"内々定","内定","お祈り"]
     statuses=[(i,i) for i in status_lis]
 
-    next_lis = ['説明会','エントリー','レポート','エントリーシート','Webテスト','コーディングテスト','面談',
-                '一次面接','二次面接','三次面接','最終面接','日程調整','内定承諾']
+    next_lis = ['説明会','エントリー','レポート','スライド','エントリーシート','Webテスト','コーディングテスト','面談',
+                '一次面接','二次面接','三次面接','最終面接','日程調整','内定辞退','内定承諾']
     nexts = [(i,i) for i in next_lis]
 
     desire_lis = ['A','B','C','D','E']
@@ -35,6 +35,7 @@ class CompanyInfo(models.Model):
     member = models.IntegerField('従業員数', blank=True, null=True)
     industry = models.CharField('業界', max_length=128, blank=True, null=True)
     salary = models.TextField('給与', blank=True, null=True)
+    mission = models.TextField('企業理念', blank=True, null=True)
     vision = models.TextField('ビジョン', blank=True, null=True)
     reason = models.TextField('志望理由', blank=True, null=True)
     memo = models.TextField('メモ', default='', blank=True)
