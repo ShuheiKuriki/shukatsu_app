@@ -3,13 +3,14 @@ from django.contrib.auth.models import User
 from django.utils.timezone import now
 
 class Company(models.Model):
-    posi_lis = ["Webエンジニア","データサイエンティスト","研究開発","ITコンサルタント","システムエンジニア","営業","企画","マーケティング"]
+    posi_lis = ["Webエンジニア","データサイエンティスト","研究開発","ITコンサルタント",
+        "システムエンジニア","営業","企画","マーケティング"]
     positions = [(i,i) for i in posi_lis]
 
-    status_lis = ["オンライン面談前","エントリー前","一次面接前","二次面接前","三次面接前","最終面接前","内定","お祈り"]
+    status_lis = ["説明会前","オンライン面談前","エントリー前","一次面接前","二次面接前","三次面接前","最終面接前","内定","お祈り"]
     statuses=[(i,i) for i in status_lis]
 
-    next_lis = ['エントリー','エントリーシート','Webテスト','コーディングテスト','面談',
+    next_lis = ['エントリー','レポート','エントリーシート','Webテスト','コーディングテスト','面談',
                 '一次面接','二次面接','三次面接','最終面接','日程調整','内定承諾']
     nexts = [(i,i) for i in next_lis]
 
