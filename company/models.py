@@ -7,11 +7,12 @@ class Company(models.Model):
         "システムエンジニア","営業","企画","マーケティング"]
     positions = [(i,i) for i in posi_lis]
 
-    status_lis = ["説明会前","面談前","エントリー前","一次面接前","二次面接前","三次面接前","最終面接前","内定","お祈り"]
+    status_lis = ["説明会前","面談前","テスト前","エントリー前","一次面接前","二次面接前",
+            "三次面接前","最終面接前",'結果待ち',"内々定","内定","お祈り"]
     statuses=[(i,i) for i in status_lis]
 
-    next_lis = ['エントリー','レポート','エントリーシート','Webテスト','コーディングテスト','面談',
-                '一次面接','二次面接','三次面接','最終面接','日程調整','結果待ち','内定承諾']
+    next_lis = ['説明会','エントリー','レポート','エントリーシート','Webテスト','コーディングテスト','面談',
+                '一次面接','二次面接','三次面接','最終面接','日程調整','内定承諾']
     nexts = [(i,i) for i in next_lis]
 
     desire_lis = ['A','B','C','D','E']
@@ -32,8 +33,8 @@ class CompanyInfo(models.Model):
     company = models.OneToOneField(Company, verbose_name='企業名', null=True, on_delete=models.CASCADE)
     official = models.CharField('正式名称',max_length=128, blank=True, null=True)
     member = models.IntegerField('従業員数', blank=True, null=True)
-    salary = models.CharField('給与', max_length=128, blank=True, null=True)
     industry = models.CharField('業界', max_length=128, blank=True, null=True)
+    salary = models.TextField('給与', blank=True, null=True)
     vision = models.TextField('ビジョン', blank=True, null=True)
     reason = models.TextField('志望理由', blank=True, null=True)
     memo = models.TextField('メモ', default='', blank=True)

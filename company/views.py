@@ -46,13 +46,11 @@ def sort(request):
 class CompanyCreateView(CreateView):
     form_class = CompanyForm
     template_name = 'company/company_create.html'
+    success_url = reverse_lazy('company:index')
 
     def form_valid(self, form):
         form.instance.user_id = self.request.user.id
         return super(CompanyCreateView, self).form_valid(form)
-
-    def get_success_url(self):
-        return original_url(self)
 
 @method_decorator(login_required, name='dispatch')
 class CompanyUpdateView(UpdateView):
