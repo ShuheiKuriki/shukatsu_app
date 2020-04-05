@@ -1,4 +1,4 @@
-from django.shortcuts import render, redirect
+from django.shortcuts import render, redirect, get_object_or_404
 from django.http import HttpResponse
 from django.contrib.auth.decorators import login_required
 from django.urls import reverse_lazy
@@ -7,6 +7,7 @@ from django.utils.http import is_safe_url
 from django.views.generic.edit import CreateView, UpdateView, DeleteView
 from django.views.generic import ListView, DetailView
 from django.views.decorators.csrf import csrf_exempt
+from django.views.decorators.http import require_POST
 from django.conf import settings
 
 from .forms import CompanyForm, CompanyInfoForm, SortForm
@@ -66,6 +67,12 @@ class CompanyDeleteView(DeleteView):
 
     def get_success_url(self):
         return original_url(self)
+
+@require_POST
+def delete(request,pk):
+    company = get_object_or_404(Company, pk=pk)
+    company.delete()
+    return redirect_to_origin(request)
 
 def info(request,pk):
     try:
@@ -129,6 +136,12 @@ class CompanyInfoDeleteView(DeleteView):
 
     def get_success_url(self):
         return reverse_lazy('company:list')
+
+@require_POST
+def deleteinfo(request,pk):
+    company = get_object_or_404(CompanyInfo, pk=pk)
+    company.delete()
+    return redirect('company:index')
 
 def redirect_to_origin(request):
     redirect_to = request.GET.get('next')

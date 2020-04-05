@@ -43,7 +43,11 @@
                 <ul class="dropdown-menu" role="menu">
                   <li><a class='btn btn-primary btn-block' href="{% url 'company:info' company.id %}">企業情報</a></li>
                   <li><a class='btn btn-primary btn-block my-1' href="{% url 'company:update' company.id %}?next={{ request.get_full_path }}">編集</a></li>
-                  <li><a class='btn btn-primary btn-block' href="{% url 'company:delete' company.id %}?next={{ request.get_full_path }}">削除</a></li>
+                  <li>
+                    <form method="post" action="{% url 'company:delete' company.id %}?next={{ request.get_full_path }}">{% csrf_token %}
+                      <button class="btn btn-primary btn-block" type="submit" onclick='return confirm("本当に削除しますか？");'>削除</button>
+                    </form>
+                  </li>
                 </ul>
               </div>
             </td>
@@ -96,7 +100,11 @@
                     <ul class="dropdown-menu" role="menu">
                       <li><a class='btn btn-primary btn-block' href="{% url 'company:info' company.id %}">企業情報</a></li>
                       <li><a class='btn btn-primary btn-block my-1' href="{% url 'company:update' company.id %}?next={{ request.get_full_path }}">編集</a></li>
-                      <li><a class='btn btn-primary btn-block' href="{% url 'company:delete' company.id %}?next={{ request.get_full_path }}">削除</a></li>
+                      <li>
+                        <form method="post" action="{% url 'company:delete' company.id %}?next={{ request.get_full_path }}">{% csrf_token %}
+                          <button class="btn btn-primary btn-block" type="submit" onclick='return confirm("本当に削除しますか？");'>削除</button>
+                        </form>
+                      </li>
                     </ul>
                   </div>
                 </td>
