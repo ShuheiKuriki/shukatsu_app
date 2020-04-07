@@ -3,11 +3,11 @@ from django.http import HttpResponse
 from django.contrib.auth.decorators import login_required
 from django.urls import reverse_lazy
 from django.utils.decorators import method_decorator
-from django.utils.http import is_safe_url
-from django.views.generic.edit import CreateView, UpdateView, DeleteView
-from django.views.generic import ListView, DetailView
 from django.views.decorators.csrf import csrf_exempt
 from django.views.decorators.http import require_POST
+from django.utils.http import is_safe_url
+from django.views.generic.edit import CreateView, UpdateView
+from django.views.generic import ListView, DetailView
 from django.conf import settings
 
 from .forms import CompanyForm, CompanyInfoForm, SortForm
@@ -57,13 +57,6 @@ class CompanyCreateView(CreateView):
 class CompanyUpdateView(UpdateView):
     model = Company
     form_class = CompanyForm
-
-    def get_success_url(self):
-        return original_url(self)
-
-@method_decorator(login_required, name='dispatch')
-class CompanyDeleteView(DeleteView):
-    model = Company
 
     def get_success_url(self):
         return original_url(self)
@@ -129,13 +122,6 @@ class CompanyInfoUpdateView(UpdateView):
 
     def get_success_url(self):
         return original_url(self)
-
-@method_decorator(login_required, name='dispatch')
-class CompanyInfoDeleteView(DeleteView):
-    model = CompanyInfo
-
-    def get_success_url(self):
-        return reverse_lazy('company:list')
 
 @require_POST
 def deleteinfo(request,pk):
