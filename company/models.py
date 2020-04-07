@@ -43,6 +43,7 @@ class CompanyInfo(models.Model):
     working_time = models.TextField('勤務時間', blank=True, null=True)
     reason = models.TextField('志望理由', blank=True, null=True)
     specification = models.TextField('特徴', blank=True, null=True)
+    questions = models.TextField('疑問点', blank=True, null=True)
     memo = models.TextField('メモ', default='', blank=True)
     user = models.ForeignKey(User, on_delete=models.CASCADE)
 
