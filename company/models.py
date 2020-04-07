@@ -34,6 +34,7 @@ class CompanyInfo(models.Model):
     official = models.CharField('正式名称',max_length=128, blank=True, null=True)
     member = models.IntegerField('従業員数', blank=True, null=True)
     industry = models.CharField('業界', max_length=128, blank=True, null=True)
+    area = models.TextField('事業領域', blank=True, null=True)
     salary = models.TextField('給与', blank=True, null=True)
     mission = models.TextField('企業理念', blank=True, null=True)
     vision = models.TextField('ビジョン', blank=True, null=True)
@@ -41,6 +42,7 @@ class CompanyInfo(models.Model):
     place = models.TextField('勤務地', blank=True, null=True)
     working_time = models.TextField('勤務時間', blank=True, null=True)
     reason = models.TextField('志望理由', blank=True, null=True)
+    specification = models.TextField('特徴', blank=True, null=True)
     memo = models.TextField('メモ', default='', blank=True)
     user = models.ForeignKey(User, on_delete=models.CASCADE)
 
