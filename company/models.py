@@ -7,21 +7,28 @@ class Company(models.Model):
         "システムエンジニア","営業","企画","マーケティング"]
     positions = [(i,i) for i in posi_lis]
 
-    status_lis = ["説明会前","面談前","テスト前","エントリー前","一次面接前","二次面接前",
-            "三次面接前","最終面接前",'結果待ち',"内々定","内定","お祈り",'辞退']
-    statuses=[(i,i) for i in status_lis]
+    status_lis = ['結果待ち',"説明会後","カジュアル面談後","エントリー前","エントリー後","テスト通過",
+            "一次面接通過","二次面接通過","三次面接通過","内々定","内定","お祈り",'辞退済']
+    statuses=[(str(i)+'. '+s,s) for i,s in enumerate(status_lis)]
 
-    next_lis = ['説明会','エントリー','レポート','スライド','エントリーシート','Webテスト','コーディングテスト','面談',
-                '一次面接','二次面接','三次面接','最終面接','日程調整','辞退','内定承諾','完了']
-    nexts = [(i,i) for i in next_lis]
+    next_lis = ['日程調整','説明会','エントリー','レポート','エントリーシート','Webテスト','コーディングテスト',
+                '面談準備','面接準備','内定承諾','辞退','完了']
+    nexts = [(str(i)+'. '+s,s) for i,s in enumerate(next_lis)]
+
+    # statuses=[(i,i) for i in status_lis]
+    #
+    # nexts = [(i,i) for i in next_lis]
+
+    # next = models.CharField('次のステップ',choices=nexts,max_length=32, blank=True, null=True)
+    # status = models.CharField('ステータス',choices=statuses,max_length=32, blank=True, null=True)
 
     desire_lis = ['A','B','C','D','E']
     desires = [(i,i) for i in desire_lis]
 
     name = models.CharField('企業名', max_length=256, blank=True)
     position = models.CharField('ポジション', choices=positions, max_length=32, blank=True, null=True)
-    status = models.CharField('ステータス',choices=statuses,max_length=32, blank=True, null=True)
-    next = models.CharField('次のステップ',choices=nexts,max_length=32, blank=True, null=True)
+    status = models.CharField('ステータス',choices=statuses, max_length=32, blank=True, null=True)
+    next = models.CharField('次のステップ',choices=nexts, max_length=32, blank=True, null=True)
     deadline = models.DateField('期限', default=now, blank=True, null=True)
     desire = models.CharField('志望度', choices=desires,max_length=32, blank=True, null=True)
     user = models.ForeignKey(User, on_delete=models.CASCADE)
