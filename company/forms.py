@@ -26,5 +26,5 @@ class CompanyInfoForm(ModelForm):
         #forms.CheckboxInput(attrs={'class': 'check'})
 
 class SortForm(forms.Form):
-    keys = [('deadline','期限'),("position",'ポジション'),("desire",'志望度'),("status",'ステータス'),('next','次のステップ')]
+    keys = [('next','次のステップ'),('deadline','期限'),("position",'ポジション'),("desire",'志望度'),("status",'ステータス')]
     key = forms.ChoiceField(choices=keys,required=True)

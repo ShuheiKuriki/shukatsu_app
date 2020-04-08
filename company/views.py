@@ -18,7 +18,7 @@ from datetime import date
 # Create your views here.
 
 def index(request):
-    return redirect('company:list', sort='deadline')
+    return redirect('company:list', sort='next')
 
 @method_decorator(login_required, name='dispatch')
 class CompanyListView(ListView):
@@ -41,7 +41,7 @@ def sort(request):
         s = request.POST.get('key')
         return redirect('company:list', sort=s)
     else:
-        return redirect('company:list', sort='deadline')
+        return redirect('company:list', sort='next')
 
 @method_decorator(login_required, name='dispatch')
 class CompanyCreateView(CreateView):
