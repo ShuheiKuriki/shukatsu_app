@@ -4,16 +4,16 @@ from django.utils.timezone import now
 
 class Company(models.Model):
     posi_lis = ["Webエンジニア","データサイエンティスト","研究開発","ITコンサルタント",
-        "システムエンジニア","営業","企画","マーケティング"]
+                    "システムエンジニア","営業","企画","マーケティング"]
     positions = [(i,i) for i in posi_lis]
 
     status_lis = ['結果待ち',"説明会後","カジュアル面談後","エントリー前","エントリー後","テスト通過",
-            "一次面接通過","二次面接通過","三次面接通過","内々定","内定","お祈り",'辞退済']
-    statuses=[(str(i)+'. '+s,s) for i,s in enumerate(status_lis)]
+                    "一次面接通過","二次面接通過","三次面接通過","内々定","内定","お祈り",'辞退済']
+    statuses=[('0'+str(i)+'. '+s,s) if i<10 else (str(i)+'. '+s,s) for i,s in enumerate(status_lis)]
 
     next_lis = ['日程調整','説明会','エントリー','レポート','エントリーシート','Webテスト','コーディングテスト',
                 '面談準備','面接準備','内定承諾','辞退','完了']
-    nexts = [(str(i)+'. '+s,s) for i,s in enumerate(next_lis)]
+    nexts = [('0'+str(i)+'. '+s,s) if i<10 else (str(i)+'. '+s,s) for i,s in enumerate(next_lis)]
 
     # statuses=[(i,i) for i in status_lis]
     #
